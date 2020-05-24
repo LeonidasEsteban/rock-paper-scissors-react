@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from 'styled-components'
 import Token from './token'
 import { WhiteButton } from './button'
+import { ScoreContext } from './App'
 
 const TableStyled = styled.div`
   display: grid;
@@ -67,6 +68,7 @@ const elements = [
 ]
 function Table() {
   // const [score, setScore] = useState(0)
+  const { score, setScore } = useContext(ScoreContext)
   const [results, setResults] = useState('')
   const [housePick, setHousePick] = useState('default')
   const [playing, setPlaying] = useState(false)
@@ -95,6 +97,9 @@ function Table() {
     // console.log('la casa eligió ', house)
     const results = playWithIA(name, house)
     setResults(results)
+    if (results === 'win') {
+      setScore(score + 1)
+    }
   }
   function playWithIA(pick, housePick) {
     if (housePick === pick) {
