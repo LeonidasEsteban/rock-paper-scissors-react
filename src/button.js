@@ -14,12 +14,19 @@ const ButtonStyled = styled.div`
   letter-spacing: 2.5px;
 `
 
-function Button({ ...props }) {
+
+function Button({ children, ...props }) {
   return (
     <ButtonStyled {...props}>
-      Rules
+      {children}
     </ButtonStyled>
   )
 }
+
+export const WhiteButton = styled(ButtonStyled)`
+  background: white;
+  color: #101a3f;
+  min-width: 220px;
+`
 
 export default Button

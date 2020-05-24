@@ -46,7 +46,9 @@ function Rules() {
           </div>
         )
       }
-      <Button onClick={handleToggleClick} />
+      <Button onClick={handleToggleClick} >
+        Rules
+      </Button>
     </RulesStyled>
   )
 }
