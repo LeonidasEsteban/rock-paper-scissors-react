@@ -35,8 +35,7 @@ const TableStyled = styled.div`
     height: 14px;
     background: rgba(0,0,0,.2);
     position: absolute;
-    left: 60px;
-    right: 60px;
+    width: 200px;
     top: 58px;
     &:before {
       content: '';
@@ -60,6 +59,12 @@ const TableStyled = styled.div`
       top: 0;
       transform: rotate(-60deg);
       transform-origin: right top;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    grid-gap: 30px 140px;
+    .line {
+      width: 300px;
     }
   }
 `
