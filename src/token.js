@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const TokenStyled = styled.div`
   width: 130px;
-  height: 130px;
+  height: 125px;
   border: 16px solid ${({ color }) => color.base};
   box-sizing: border-box;
   border-radius: 50%;
@@ -11,11 +11,13 @@ const TokenStyled = styled.div`
   background: white;
   box-shadow: 0 5px 0 ${({ color }) => color.border};
   cursor: pointer;
+  position: relative;
+  z-index: 2;
   &:active {
     transform: scale(.9);
   }
   .box {
-    box-shadow: 0 -5px 0 #bcc1d5;
+    box-shadow: 0 -4px 0 #BABFD4;
     flex: 1;
     align-self: stretch;
     border-radius: 50%;
