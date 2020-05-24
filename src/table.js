@@ -23,6 +23,9 @@ const TableStyled = styled.div`
   }
   .results {
     text-align: center;
+    h2 {
+      text-transform: uppercase;
+    }
   }
   .line {
     display: ${({ playing }) => !playing ? 'block' : 'none'};
@@ -64,18 +67,34 @@ const elements = [
 ]
 function Table() {
   // const [score, setScore] = useState(0)
+  const [results, setResults] = useState('')
+  const [housePick, setHousePick] = useState('default')
   const [playing, setPlaying] = useState(false)
   const [pick, setPick] = useState('')
   function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
-  function onClick(name) {
+  function launchHousePick() {
+    return new Promise((resolve, reject) => {
+      let pick
+      const interval = setInterval(() => {
+        pick = elements[getRandomInt(0, 3)]
+        setHousePick(pick)
+      }, 75)
+      setTimeout(() => {
+        clearInterval(interval)
+        resolve(pick)
+      }, 2000)
+    })
+  }
+  async function onClick(name) {
     setPlaying(true)
     setPick(name)
-    const housePick = elements[getRandomInt(0, 3)]
-    console.log('la casa eligió ', housePick)
-    const results = playWithIA(name, housePick)
-    console.log(results)
+    const house = await launchHousePick()
+    // console.log(house)
+    // console.log('la casa eligió ', house)
+    const results = playWithIA(name, house)
+    setResults(results)
   }
   function playWithIA(pick, housePick) {
     if (housePick === pick) {
@@ -126,11 +145,11 @@ function Table() {
                 <p>You Picked</p>
               </div>
               <div className="in-game">
-                <Token />
+                <Token name={housePick} />
                 <p>The house Picked</p>
               </div>
               <div className="results">
-                <h2>YOU ???</h2>
+                <h2>YOU {results}</h2>
                 <WhiteButton onClick={handleTryAgainClick}>
                   Try Again
                 </WhiteButton>
