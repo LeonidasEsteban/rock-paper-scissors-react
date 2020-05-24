@@ -24,7 +24,6 @@ const RulesStyled = styled.div`
       color: #3B4262;
       text-transform: uppercase;
       font-weight: 700;
-      font-family: Arial;
       letter-spacing: -2px;
       margin-bottom: 1em;
     }
@@ -32,7 +31,7 @@ const RulesStyled = styled.div`
 `
 
 function Rules() {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(false)
   function handleToggleClick() {
     setVisible(!visible)
   }
