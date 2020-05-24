@@ -26,6 +26,8 @@ const TableStyled = styled.div`
     text-align: center;
     h2 {
       text-transform: uppercase;
+      font-size: 56px;
+      margin: 10px;
     }
   }
   .line {
@@ -132,6 +134,7 @@ function Table() {
   }
   function handleTryAgainClick() {
     setPlaying(false)
+    setResults('')
   }
   return (
     <TableStyled playing={playing}>
@@ -146,18 +149,24 @@ function Table() {
         ) : (
             <>
               <div className="in-game">
-                <Token name={pick} />
+                <Token name={pick} isShadowAnimated={(results === 'win')} />
                 <p>You Picked</p>
               </div>
               <div className="in-game">
-                <Token name={housePick} />
+                <Token name={housePick} isShadowAnimated={(results === 'lose')} />
                 <p>The house Picked</p>
               </div>
               <div className="results">
-                <h2>YOU {results}</h2>
-                <WhiteButton onClick={handleTryAgainClick}>
-                  Try Again
-                </WhiteButton>
+                {
+                  results && (
+                    <>
+                      <h2>YOU {results}</h2>
+                      <WhiteButton onClick={handleTryAgainClick}>
+                        Try Again
+                      </WhiteButton>
+                    </>
+                  )
+                }
               </div>
             </>
           )
