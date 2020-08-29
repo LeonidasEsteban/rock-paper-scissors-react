@@ -78,7 +78,7 @@ function Token({ name = 'default', onClick, isShadowAnimated = false, playing })
   return (
     <TokenStyled color={color} onClick={handleClick} name={name} isShadowAnimated={isShadowAnimated} playing={playing}>
       <div className="box">
-        <img src={`./images/icon-${name}.svg`} alt="" />
+        <img src={`/rock-paper-scissors-react/images/icon-${name}.svg`} alt="" />
       </div>
     </TokenStyled>
   )
